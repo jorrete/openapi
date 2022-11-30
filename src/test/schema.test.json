@@ -1,0 +1,184 @@
+{
+  "openapi": "3.0.3",
+  "paths": {
+    "/api/v0/getLandUse/": {
+      "get": {
+        "operationId": "getLandUse_list",
+        "description": "Get land use.",
+        "tags": [
+          "getLandUse"
+        ],
+        "security": [
+          {
+            "spectacularCookieAuth": []
+          },
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ValueLabel"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/v0/getLegends/": {
+      "post": {
+        "operationId": "getLegends_create",
+        "description": "Get legends.",
+        "tags": [
+          "getLegends"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Legends"
+              },
+              "examples": {
+                "RequestDefault": {
+                  "value": {
+                    "Dashboard": "network_measurements",
+                    "Resolution": 140,
+                    "Technology": "LTE"
+                  },
+                  "summary": "default"
+                },
+                "RequestExtra": {
+                  "value": {
+                    "Dashboard": "network_measurements",
+                    "Resolution": 180,
+                    "Technology": "LTE"
+                  },
+                  "summary": "extra"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "spectacularCookieAuth": []
+          },
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LegendsOutput"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Legends": {
+        "type": "object",
+        "properties": {
+          "Dashboard": {
+            "type": "string",
+            "maxLength": 30
+          },
+          "Resolution": {
+            "type": "integer"
+          },
+          "Technology": {
+            "type": "string",
+            "maxLength": 30
+          }
+        },
+        "required": [
+          "Dashboard",
+          "Resolution",
+          "Technology"
+        ]
+      },
+      "LegendsOutput": {
+        "type": "object",
+        "properties": {
+          "magnitude": {
+            "type": "integer",
+            "nullable": true
+          },
+          "magnitude_label": {
+            "type": "string",
+            "nullable": true
+          },
+          "metric": {
+            "type": "string",
+            "nullable": true
+          },
+          "metric_label": {
+            "type": "string",
+            "nullable": true
+          },
+          "samples": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "text": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "colour": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "colour",
+          "text",
+          "value"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "Bearer"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9000",
+      "description": "localhost"
+    }
+  ]
+}

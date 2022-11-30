@@ -1,0 +1,9 @@
+{
+  "root": true,
+  "extends": [
+    "jorrodev/typescript"
+  ],
+  "rules": {
+    "_no-underscore-dangle": "off"
+  }
+}

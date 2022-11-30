@@ -1,0 +1,7 @@
+node_modules/
+__snapshots__/
+.dist/
+.jsdoc/
+package-lock.json
+*.log
+*.tgz
