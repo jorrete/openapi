@@ -85,7 +85,7 @@ class API {
     return result;
   }
 
-  fetchFunction = fetch;
+  fetchFunction = self.fetch;
 
   fetch(url, requestOptions, ref, context) {
     const abortController = new AbortController();
@@ -98,11 +98,11 @@ class API {
     Object.assign(requestOptions, {
       signal: abortController.signal,
       mode: 'cors',
-      // credentials: 'include',
-      credentials: 'omit',
+      credentials: 'include',
+      // credentials: 'omit',
     });
 
-    return this.fetchFunction(url, requestOptions, context)
+    return this.fetchFunction.call(self, url, requestOptions, context)
       .catch((error) => {
         // mandatory: cancel error must be CancelError
         if (error instanceof DOMException) {
