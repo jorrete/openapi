@@ -85,7 +85,9 @@ class API {
     return result;
   }
 
-  fetch(url, requestOptions, ref) {
+  fetchFunction = fetch;
+
+  fetch(url, requestOptions, ref, context) {
     const abortController = new AbortController();
 
     // mandatory: must update ref with cancel request method
@@ -96,10 +98,11 @@ class API {
     Object.assign(requestOptions, {
       signal: abortController.signal,
       mode: 'cors',
-      credentials: 'include',
+      // credentials: 'include',
+      credentials: 'omit',
     });
 
-    return fetch(url, requestOptions)
+    return this.fetchFunction(url, requestOptions, context)
       .catch((error) => {
         // mandatory: cancel error must be CancelError
         if (error instanceof DOMException) {
@@ -153,6 +156,9 @@ class API {
     // Wait to client, if not we could be trying to cancel before the call is done
     return this.client.then(() => {
       const ref = this.getRef(controller);
+      if (!ref) {
+        throw Error('controller already resolved');
+      }
       ref.cancel(controller);
       ref.canceled = true;
     });
@@ -167,7 +173,7 @@ class API {
         Object.assign(ref, {
           override: true,
         });
-        const fetchPromise = this.fetch(url, requestOptions, ref);
+        const fetchPromise = this.fetch(url, requestOptions, ref, context);
 
         const middlewares = this.middlewareInstances
           .slice()

@@ -1,4 +1,4 @@
-import Middleware from '../middleware/base';
+import Middleware from '../../src/middleware/base';
 
 class ContentMiddleware extends Middleware {
   static get id() {

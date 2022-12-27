@@ -1,5 +1,4 @@
-/* eslint consistent-return: off */
-import Middleware from '../middleware/base';
+import Middleware from '../../src/middleware/base';
 
 class HijackMiddleware extends Middleware {
   static get id() {

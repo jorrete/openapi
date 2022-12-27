@@ -1,4 +1,4 @@
-import Middleware from '../middleware/base';
+import Middleware from '../../src/middleware/base';
 
 // Since in testing we donp't actullay call any server
 // and fake the fetch api we need a way to delay
@@ -12,8 +12,9 @@ class DelayMiddleware extends Middleware {
     return 'delay';
   }
 
-  onCall() {
-    return new Promise((resolve) => setTimeout(resolve, 300));
+  onCall(context) {
+    const delay = context.options.delay || 0;
+    return new Promise((resolve) => setTimeout(resolve, delay));
   }
 }
 

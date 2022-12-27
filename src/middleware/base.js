@@ -36,6 +36,7 @@ class Middleware {
   }
 
   onCall() {
+    void 0;
   }
 
   checkRequest() {
