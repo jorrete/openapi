@@ -32,7 +32,7 @@ describe('SCHEMA', async () => {
   test('get schema', async () => {
     expect.assertions(1);
 
-    const api = await new API(schema);
+    const api = new API(schema);
 
     expect(api).toBeDefined();
   });
