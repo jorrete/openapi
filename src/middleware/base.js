@@ -31,35 +31,35 @@ class Middleware {
     this.options = options;
   }
 
-  checkCall() {
+  checkCall(context) {
     return true;
   }
 
-  onCall() {
+  onCall(context) {
     void 0;
   }
 
-  checkRequest() {
+  checkRequest(context) {
     return true;
   }
 
-  onRequest(request) {
+  onRequest(request, context) {
     return request;
   }
 
-  checkFetch() {
+  checkFetch(url, requestOptions, context) {
     return true;
   }
 
-  onFetch(promise) {
-    return promise;
+  onFetch(fetchPromise, url, requestOptions, context) {
+    return fetchPromise;
   }
 
-  checkResponse() {
+  checkResponse(context) {
     return true;
   }
 
-  onResponse(response) {
+  onResponse(response, context) {
     return response;
   }
 }
