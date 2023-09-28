@@ -1,18 +1,21 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite';
 import path from 'path';
-import server from './server';
+import { defineConfig } from 'vite';
 
-function serverPlugin() {
-  return {
-    name: 'openapi:server',
-    config(_, { command }) {
-      if (command === 'server') {
-        server();
-      }
-    },
-  };
-}
+// import { server } from './server';
+//
+// function serverPlugin() {
+//   return {
+//     config(_, {
+//       command,
+//     }) {
+//       if (command === 'serve') {
+//         server();
+//       }
+//     },
+//     name: 'openapi:server',
+//   };
+// }
 
 export default defineConfig({
   resolve: {
@@ -20,17 +23,9 @@ export default defineConfig({
       'utils': path.join(process.cwd(), 'utils'),
     },
   },
+  root: 'example',
   server: {
-    port: 7777,
     host: '0.0.0.0',
-  },
-  plugins: [
-    serverPlugin(),
-  ],
-  test: {
-    root: 'src',
-    dir: 'src',
-    include: ['**/test.*'],
-    environment: 'jsdom',
+    port: 7778,
   },
 });

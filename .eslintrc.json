@@ -1,9 +1,21 @@
 {
   "root": true,
   "extends": [
-    "jorrodev/typescript"
+    "jorrodev/typescript",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
+  "env": {
+    "node": true,
+    "browser": true
+  },
   "rules": {
+    "@typescript-eslint/no-var-requires": "off",
     "_no-underscore-dangle": "off"
-  }
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ]
 }
