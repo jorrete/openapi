@@ -29,7 +29,7 @@ type FailAsResponse = {
   failAsResponse?: boolean;
 }
 
-type SwaggerAPIOptions = (
+export type SwaggerAPIOptions = (
   SwaggerSpec
   & FailAsResponse
   & {

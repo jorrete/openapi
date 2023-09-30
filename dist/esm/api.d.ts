@@ -11,7 +11,7 @@ export declare abstract class SwaggerAPIMiddleware<O = unknown> {
 type FailAsResponse = {
     failAsResponse?: boolean;
 };
-type SwaggerAPIOptions = (SwaggerSpec & FailAsResponse & {
+export type SwaggerAPIOptions = (SwaggerSpec & FailAsResponse & {
     middlewares?: SwaggerAPIMiddleware[];
 });
 export declare function restoreSwaggerException(response: SwaggerResponseEror): void;
