@@ -2,8 +2,8 @@
   "name": "openapi-next",
   "version": "1.0.22",
   "license": "UNLICENSED",
-  "main": "./dist/api.js",
-  "module": "./dist/esm/api.js",
+  "main": "./dist/esm/api.js",
+  "exports": "./dist/esm/api.js",
   "dependencies": {
     "swagger-client": "^3.18.5"
   },
