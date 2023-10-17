@@ -15,7 +15,7 @@ export abstract class SwaggerAPIMiddleware<O = unknown> {
 
   options: O;
 
-  constructor(options: O) {
+  constructor(options?: O) {
     this.options = options || {} as O;
   }
 
@@ -87,7 +87,7 @@ export class SwaggerAPI{
         };
       }));
 
-      return await (await this.client).execute({
+      return (await this.client).execute({
         ...options,
         requestInterceptor: async (request) => {
           await promisedList(this.middlewares.filter((middleware) => middleware.onRequest).map((middleware) => {

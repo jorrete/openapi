@@ -29,6 +29,8 @@ declare module 'swagger-client' {
     credentials: Request['credentials'],
     headers: Request['headers'],
     method: Request['method'],
+    mode: Request['mode']
+    mode: Request['mode']
     url: string,
   };
 
